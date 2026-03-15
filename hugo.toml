@@ -1,0 +1,4 @@
+baseURL = 'https://oi.nzm.io/'
+languageCode = 'ja-jp'
+title = 'おい！のぞむ'
+theme = "PaperMod"
