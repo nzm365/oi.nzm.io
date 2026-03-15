@@ -2,12 +2,20 @@ name: Deploy Hugo site to Pages
 
 on:
   push:
-    branches: ["main"] # あなたのデフォルトブランチ名
+    branches: ["main"]
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
   build:
@@ -16,18 +24,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: recursive # テーマをサブモジュールにしている場合
+          submodules: recursive
           fetch-depth: 0
-
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: 'latest'
-          extended: true # Hugo Extended版が必要な場合
-
+          extended: true
       - name: Build with Hugo
         run: hugo --minify
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -36,7 +43,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps: deployment.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
     steps:
