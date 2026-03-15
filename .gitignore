@@ -1,0 +1,13 @@
+# Hugoのビルド出力ディレクトリ
+public/
+
+# リソースキャッシュ（画像処理やSassのキャッシュ）
+resources/
+_gen/
+
+# 実行時のロックファイル
+.hugo_build.lock
+
+# OS固有の不要ファイル
+.DS_Store
+Thumbs.db
