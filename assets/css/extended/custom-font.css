@@ -4,3 +4,11 @@
 .entry-header h2 {
     font-family: "Noto Serif JP", "Yu Mincho", "YuMincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", serif;
 }
+
+.site-subtitle {
+    display: block;
+    color: var(--secondary);
+    font-size: 13px;
+    margin-top: 2px;
+    margin-left: 10px;
+}
